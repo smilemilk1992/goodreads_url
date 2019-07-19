@@ -1,16 +1,16 @@
-# https://catalog.sunnyvalelibrary.org/iii/encore/;jsessionid=E738AA9E78A4FF38813EC235B4C9D7EE?lang=eng
-# https://catalog.sunnyvalelibrary.org/iii/encore/search/C__SBeastly%20Babies__Orightresult__U?lang=eng&suite=cobalt
-# https://catalog.sunnyvalelibrary.org/iii/encore/record/C__Rb1596231__SBeastly%20Babies__Orightresult__U__X7?lang=eng&suite=cobalt
+# https://sccl.bibliocommons.com/
+# https://sccl.bibliocommons.com/v2/search?query=Beastly+Babies&searchType=smart
+
 # -*- coding: utf-8 -*-
 import re
 from bs4 import BeautifulSoup
 import requests
 import xlwt
 import xlrd
-url="https://catalog.sunnyvalelibrary.org/iii/encore/search/C__S{}__Orightresult__U?lang=eng&suite=cobalt"
+url="https://sccl.bibliocommons.com/v2/search?query={}&searchType=smart"
 colum=["id","title","goodreadsUrl","aclibraryUrl","detailUrl"]
 file=xlwt.Workbook(encoding='utf-8',style_compression=0)
-sheet=file.add_sheet("Sunnyvale",cell_overwrite_ok=True)
+sheet=file.add_sheet("Santa_Clara",cell_overwrite_ok=True)
 for i in colum:
     sheet.write(0, colum.index(i), i)
 j=0
@@ -29,13 +29,12 @@ for i in range(1,nrows):
         if type(title) is float:
             continue
         goodreadsUrl=datas[3]
-        aclibraryUrl =url.format(re.sub('[^0-9a-zA-Z]+', '%20', datas[1]))
+        aclibraryUrl =url.format(re.sub('[^0-9a-zA-Z]+', '+', datas[1]))
         rs=requests.get(aclibraryUrl)
         soup = BeautifulSoup(rs.text, 'html.parser')
-        link=soup.find(id="recordDisplayLink2Component")
+        link=soup.find("h2",{"class":"cp-title"}).a["href"] if soup.find("h2",{"class":"cp-title"}) else None
         if link:
-            JSESSIONID=re.search(";jsessionid=.*?\?",link["href"]).group(0)
-            detailUrl = "https://catalog.sunnyvalelibrary.org"+link["href"].replace(JSESSIONID,"?")
+            detailUrl = "https://sccl.bibliocommons.com"+link
         else:
             detailUrl="None"
         if id:
@@ -44,5 +43,5 @@ for i in range(1,nrows):
             sheet.write(j, 2, goodreadsUrl)
             sheet.write(j, 3, aclibraryUrl)
             sheet.write(j, 4, detailUrl)
-            file.save('Sunnyvale.xls')
+            file.save('Santa_Clara.xls')
             print(id,title,aclibraryUrl,detailUrl)
