@@ -1,7 +1,7 @@
 # https://www.bklynlibrary.org/
 
 # https://www.bklynlibrary.org/sapi/search.php?search=The%20Berenstain%20Bears%20and%20the%20Truth
-
+# A Counting and Barking Book
 # -*- coding: utf-8 -*-
 import re
 from bs4 import BeautifulSoup
@@ -33,7 +33,7 @@ for i in range(1,nrows):
         aclibraryUrl =url.format(re.sub('[^0-9a-zA-Z]+', '%20', datas[1]))
         rs=requests.get(aclibraryUrl)
         soup = BeautifulSoup(rs.text, 'xml')
-        link=soup.find("a",{"class":"text-white"}).a["href"] if soup.find("a",{"class":"text-white"}) else None
+        link=soup.find("a",{"class":"text-white"})["href"] if soup.find("a",{"class":"text-white"}) else None
         if link:
             detailUrl = link
         else:

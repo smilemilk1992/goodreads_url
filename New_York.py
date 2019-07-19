@@ -34,8 +34,7 @@ for i in range(1,nrows):
         soup = BeautifulSoup(rs.text, 'html.parser')
         link=soup.find(id="recordDisplayLink2Component")
         if link:
-            JSESSIONID=re.search(";jsessionid=.*?\?",link["href"]).group(0)
-            detailUrl = "https://browse.nypl.org"+link["href"].replace(JSESSIONID,"?")
+            detailUrl = "https://browse.nypl.org"+link["href"]
         else:
             detailUrl="None"
         if id:

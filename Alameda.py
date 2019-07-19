@@ -1,8 +1,6 @@
 # https://www.aclibrary.org/home
-# http://encore.aclibrary.org/iii/encore/search/C__SBeastly%20Babies__Orightresult;jsessionid=5B5562E8DE41A219A8CCD685F6F5466A?lang=eng
-# http://encore.aclibrary.org/iii/encore/record/C__Rb2110882__SBeastly%20Babies__Orightresult__X6?lang=eng&suite=def
-
 # http://encore.aclibrary.org/iii/encore/search/C__SThe%20Grumpus%20Under%20the%20Rug?lang=eng
+# http://encore.aclibrary.org/iii/encore/record/C__Rb2110882__SBeastly%20Babies__Orightresult__X6?lang=eng&suite=def
 # -*- coding: utf-8 -*-
 import re
 from bs4 import BeautifulSoup
@@ -33,7 +31,7 @@ for i in range(1,nrows):
         goodreadsUrl=datas[3]
         aclibraryUrl =url.format(re.sub('[^0-9a-zA-Z]+', '%20', datas[1]))
         rs=requests.get(aclibraryUrl)
-        soup = BeautifulSoup(rs.text, 'html.parser')
+        soup = BeautifulSoup(rs.text, 'xml')
         link=soup.find(id="recordDisplayLink2Component")
         if link:
             JSESSIONID=re.search(";jsessionid=.*?\?",link["href"]).group(0)

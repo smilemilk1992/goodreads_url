@@ -32,7 +32,7 @@ for i in range(1,nrows):
         goodreadsUrl=datas[3]
         aclibraryUrl =url.format(re.sub('[^0-9a-zA-Z]+', '+', datas[1]))
         rs=requests.get(aclibraryUrl)
-        soup = BeautifulSoup(rs.text, 'html.parser')
+        soup = BeautifulSoup(rs.text, 'xml')
         link=soup.find("h2",{"class":"cp-title"}).a["href"] if soup.find("h2",{"class":"cp-title"}) else None
         if link:
             detailUrl = "https://smcl.bibliocommons.com"+link

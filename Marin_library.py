@@ -31,7 +31,7 @@ for i in range(1,nrows):
         goodreadsUrl=datas[3]
         aclibraryUrl =url.format(re.sub('[^0-9a-zA-Z]+', '%20', datas[1]))
         rs=requests.get(aclibraryUrl)
-        soup = BeautifulSoup(rs.text, 'html.parser')
+        soup = BeautifulSoup(rs.text, 'xml')
         link=soup.find(id="recordDisplayLink2Component")
         if link:
             JSESSIONID=re.search(";jsessionid=.*?\?",link["href"]).group(0)
