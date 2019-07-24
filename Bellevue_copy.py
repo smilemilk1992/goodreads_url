@@ -16,7 +16,7 @@ for i in colum:
 j=0
 
 
-with open('cudos_goodreads.txt', "r") as f:
+with open('cudos_goodreads.txt', "r",encoding="utf-8") as f:
     datas = f.readlines()
     for data in datas:
         j = j + 1
@@ -28,7 +28,7 @@ with open('cudos_goodreads.txt', "r") as f:
         author=data[3]
         aclibraryUrl =url.format(re.sub('[^0-9a-zA-Z]+', '+', title+"+"+author))
         rs=requests.get(aclibraryUrl)
-        soup = BeautifulSoup(rs.text, 'xml')
+        soup = BeautifulSoup(rs.text, 'html.parser')
         link = soup.find("h2", {"class": "cp-title"}).a["href"] if soup.find("h2", {"class": "cp-title"}) else None
         if link:
             detailUrl = "https://kcls.bibliocommons.com"+link
