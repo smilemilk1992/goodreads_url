@@ -5,8 +5,8 @@ from bs4 import BeautifulSoup
 from concurrent.futures import ThreadPoolExecutor
 
 
-from ..dbhelp.insert_original import *
-from ..loghelp.LogHelp import *
+from ..insert_original import *
+from ..LogHelp import *
 
 log = Loggers(level='info',filename="python_originalUrl")
 
