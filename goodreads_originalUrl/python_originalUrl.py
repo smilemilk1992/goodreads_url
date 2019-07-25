@@ -1,15 +1,12 @@
 # -*- coding: utf-8 -*-
-import sys
 import random
-import re
 import requests
 from bs4 import BeautifulSoup
-sys.path
 from concurrent.futures import ThreadPoolExecutor
 
 
-from dbhelp.insert_original import *
-from loghelp.LogHelp import *
+from .dbhelp.insert_original import *
+from .loghelp.LogHelp import *
 
 log = Loggers(level='info',filename="python_originalUrl")
 
