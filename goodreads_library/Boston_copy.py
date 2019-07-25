@@ -13,7 +13,7 @@ sheet=file.add_sheet("Boston_copy",cell_overwrite_ok=True)
 for i in colum:
     sheet.write(0, colum.index(i), i)
 j=0
-with open('cudos_goodreads.txt', "r",encoding="utf-8") as f:
+with open('cudos_goodreads.txt', "r") as f:
     datas = f.readlines()
     for data in datas:
         j = j + 1
