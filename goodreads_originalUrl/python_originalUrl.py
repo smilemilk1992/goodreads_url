@@ -148,11 +148,11 @@ def getInfo(datas):
         item["goodreadsIndigo"] = goodreadsIndigo
         item["Indigo"] = Indigo
         log.logger.info("-------------> 输出："+str(item))
-        insertDb(item)
+        insertDb.mysqlhelp(item)
     except Exception as e:
         log.logger.error("datas="+datas+" ,入库失败！e=" + e)
 
-        
+
 
 
 if __name__ == "__main__":
