@@ -18,7 +18,7 @@ class SpiderGoodreadsPipeline:
     sql = '''INSERT IGNORE into p_news_originalUrl1(cudosId,goodreadsId,title,goodreadsUrl,goodreadsReq,goodreadsAmazonUrl,AmazonUrl,goodreadsAlibrisUrl,AlibrisUrl,goodreadsWalmarteBooksUrl,WalmarteBooksUrl,goodreadsBarnesNoble,BarnesNoble,goodreadsIndieBound,IndieBound,goodreadsIndigo,Indigo)value(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'''
 
 
-    def process_item(self,item):
+    def insertDatabase(self,item):
         try:
             insertdata = (
                 item['cudosId'],

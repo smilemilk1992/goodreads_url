@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
+import sys
 import random
 import re
 import requests
 from bs4 import BeautifulSoup
 
 from concurrent.futures import ThreadPoolExecutor
-from dbhelp.insert_original import SpiderGoodreadsPipeline
-
+# from dbhelp.insert_original import SpiderGoodreadsPipeline
+sys.append("/dbhelp")
 from loghelp.LogHelp import Loggers
 
 log = Loggers(level='info',filename="python_originalUrl")
@@ -148,7 +149,7 @@ def getInfo(datas):
         item["goodreadsIndigo"] = goodreadsIndigo
         item["Indigo"] = Indigo
         log.logger.info("-------------> 输出："+str(item))
-        SpiderGoodreadsPipeline.process_item(item)
+        SpiderGoodreadsPipeline.insertDatabase(item)
     except Exception as e:
         log.logger.error("datas="+datas+" ,入库失败！e=" + e)
 
