@@ -7,10 +7,11 @@ from bs4 import BeautifulSoup
 
 from concurrent.futures import ThreadPoolExecutor
 
-import goodreads_url.dbhelp.insert_original as Mysql
-import goodreads_url.loghelp.LogHelp as LOG
 
-log = LOG.Loggers(level='info',filename="python_originalUrl")
+from dbhelp.insert_original import *
+from loghelp.LogHelp import *
+
+log = Loggers(level='info',filename="python_originalUrl")
 
 USER_AGENTS = [
     "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; AcooBrowser; .NET CLR 1.1.4322; .NET CLR 2.0.50727)",
@@ -149,7 +150,7 @@ def getInfo(datas):
         item["goodreadsIndigo"] = goodreadsIndigo
         item["Indigo"] = Indigo
         log.logger.info("-------------> 输出："+str(item))
-        Mysql.SpiderGoodreadsPipeline.insertDatabase(item)
+        SpiderGoodreadsPipeline.insertDatabase(item)
     except Exception as e:
         log.logger.error("datas="+datas+" ,入库失败！e=" + e)
 
