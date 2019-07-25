@@ -6,9 +6,9 @@ import requests
 from bs4 import BeautifulSoup
 
 from concurrent.futures import ThreadPoolExecutor
-# from dbhelp.insert_original import SpiderGoodreadsPipeline
-import goodreads_originalUrl.dbhelp.insert_original as Mysql
-import goodreads_originalUrl.loghelp.LogHelp as LOG
+
+import goodreads_url.dbhelp.insert_original as Mysql
+import goodreads_url.loghelp.LogHelp as LOG
 
 log = LOG.Loggers(level='info',filename="python_originalUrl")
 
