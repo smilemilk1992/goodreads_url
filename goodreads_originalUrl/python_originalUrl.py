@@ -7,8 +7,8 @@ from bs4 import BeautifulSoup
 
 from concurrent.futures import ThreadPoolExecutor
 # from dbhelp.insert_original import SpiderGoodreadsPipeline
-import dbhelp.insert_original as Mysql
-import loghelp.LogHelp as LOG
+import insert_original as Mysql
+import LogHelp as LOG
 
 log = LOG.Loggers(level='info',filename="python_originalUrl")
 
