@@ -5,7 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from concurrent.futures import ThreadPoolExecutor
-from dbhelp.insert_original import insertDb
+from dbhelp.insert_original import SpiderGoodreadsPipeline
 
 from loghelp.LogHelp import Loggers
 
@@ -148,7 +148,7 @@ def getInfo(datas):
         item["goodreadsIndigo"] = goodreadsIndigo
         item["Indigo"] = Indigo
         log.logger.info("-------------> 输出："+str(item))
-        insertDb.mysqlhelp(item)
+        SpiderGoodreadsPipeline.process_item(item)
     except Exception as e:
         log.logger.error("datas="+datas+" ,入库失败！e=" + e)
 
