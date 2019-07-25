@@ -8,7 +8,7 @@ from logging import Handler, FileHandler, StreamHandler
 class PathFileHandler(FileHandler):
     def __init__(self, path, filename, mode='a', encoding=None, delay=False):
 
-        filename = os.fspath(filename)
+        # filename = os.fspath(filename)
         if not os.path.exists(path):
             os.mkdir(path)
         self.baseFilename = os.path.join(path, filename)
