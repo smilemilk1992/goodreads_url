@@ -5,6 +5,8 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="goodreads_originalUrl.python_originalUrl.*" />
+          <option value="insert_original" />
+          <option value="LogHelp" />
         </list>
       </option>
     </inspection_tool>
